@@ -8,7 +8,7 @@ const TopInstructor = () => {
             <h1 className="text-center text-5xl font-bold text-blue-500 p-10">Our Popular Instructor</h1>
            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
            {
-                instructors.map(instructor => <InstructorCard
+                instructors.slice(0,6).map(instructor => <InstructorCard
                 key={instructor._id}
                 instructor={instructor}
                 ></InstructorCard>)
