@@ -15,7 +15,7 @@ import { Pagination, Navigation } from "swiper";
 
 const Banner = () => {
   const bannerText = (
-    <div className="w-1/2 absolute top-0 h-full lg:p-32 backdrop-blur-sm text-white space-y-5">
+    <div className="w-96 lg:w-1/2 absolute top-20 lg:top-0 h-full p-5 lg:p-32  backdrop-blur-sm text-white space-y-5">
             <h1 className="text-5xl text-blue-500 font-bold font-sans"> Speak Smile</h1>
             <p className="text-2xl font-serif font-bold">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta

@@ -2,7 +2,7 @@
   {
     "_id": "1",
     "course": "French",
-    "img": "[Insert Image URL]",
+    "img": "https://esdubai.com/wp-content/uploads/2022/09/learning-english-importance.jpg",
     "instructorName": "Marie Dupont",
     "instructorEmail": "marie.dupont@example.com",
     "price": 99.99,
@@ -13,7 +13,7 @@
   {
     "_id": "2",
     "course": "Spanish",
-    "img": "[Insert Image URL]",
+    "img": "https://esdubai.com/wp-content/uploads/2022/09/learning-english-importance.jpg",
     "instructorName": "Carlos Hernandez",
     "instructorEmail": "carlos.hernandez@example.com",
     "price": 89.99,
@@ -24,7 +24,7 @@
   {
     "_id": "3",
     "course": "German",
-    "img": "[Insert Image URL]",
+    "img": "https://esdubai.com/wp-content/uploads/2022/09/learning-english-importance.jpg",
     "instructorName": "Hans Schmidt",
     "instructorEmail": "hans.schmidt@example.com",
     "price": 79.99,
@@ -35,7 +35,7 @@
   {
     "_id": "4",
     "course": "Italian",
-    "img": "[Insert Image URL]",
+    "img": "https://esdubai.com/wp-content/uploads/2022/09/learning-english-importance.jpg",
     "instructorName": "Giulia Rossi",
     "instructorEmail": "giulia.rossi@example.com",
     "price": 94.99,
@@ -46,7 +46,7 @@
   {
     "_id": "5",
     "course": "Mandarin Chinese",
-    "img": "[Insert Image URL]",
+    "img": "https://esdubai.com/wp-content/uploads/2022/09/learning-english-importance.jpg",
     "instructorName": "Li Wei",
     "instructorEmail": "li.wei@example.com",
     "price": 109.99,
@@ -57,7 +57,7 @@
   {
     "_id": "6",
     "course": "Japanese",
-    "img": "[Insert Image URL]",
+    "img": "https://esdubai.com/wp-content/uploads/2022/09/learning-english-importance.jpg",
     "instructorName": "Yuki Nakamura",
     "instructorEmail": "yuki.nakamura@example.com",
     "price": 109.99,
