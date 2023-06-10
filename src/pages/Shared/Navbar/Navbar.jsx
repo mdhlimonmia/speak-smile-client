@@ -4,7 +4,8 @@ const Navbar = () => {
   const navItems = (
     <>
       <li><Link to='/' >Home</Link></li>
-      <li><Link to='instructor' >All Instructor</Link></li>
+      <li><Link to='/instructor' >All Instructor</Link></li>
+      <li><Link to='/courses' >Our Course</Link></li>
     </>
   )
   return (
@@ -42,7 +43,7 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <Link to='/' className="btn text-white bg-blue-500">Enroll Now</Link>
+        <Link to='/courses' className="btn text-white bg-blue-500">Enroll Now</Link>
       </div>
     </div>
   );
