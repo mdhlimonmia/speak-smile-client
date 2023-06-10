@@ -9,7 +9,7 @@ import p7 from "../../../assets/photosection/7.jpg";
 const PhotoSection = () => {
   return (
     <div>
-      <h1>lsdlfjaslfj</h1>
+      <h1 className="text-center text-5xl font-bold text-blue-500 p-10">Beautiful Moment</h1>
       <div className="carousel carousel-end rounded-box mx-5 lg:mx-16">
       <div className="carousel-item">
         <img className="w-80" src={p1} alt="Drink" />
