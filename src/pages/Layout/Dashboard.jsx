@@ -23,7 +23,7 @@ const Dashboard = () => {
             <Link to='addcourse'>Add a Course</Link>
           </li>
           <li>
-            <Link to='mycourse'>My Course</Link>
+            <Link to='mycourses'>My Course</Link>
           </li>
         </>
     );
