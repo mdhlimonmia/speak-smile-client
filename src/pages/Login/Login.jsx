@@ -2,19 +2,43 @@ import { useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../providers/AuthProvider";
-
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
+import { BsGithub } from "react-icons/bs";
 const Login = () => {
-  const {register,handleSubmit,formState: { errors },} = useForm();
-  const { signIn } = useContext(AuthContext);
-  const onSubmit = data =>{
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const { signIn, googleSignIn } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location.state?.from?.pathname || "/";
+
+  const onSubmit = (data) => {
     signIn(data.email, data.password)
-    .then(result =>{
-      console.log(result);
-    })
-    .catch(error => {
-      console.log(error.message);
-    })
-  }
+      .then((result) => {
+        console.log(result);
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+
+  const handleGoogleSignIn = () => {
+    googleSignIn()
+      .then((result) => {
+        console.log(result);
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
+
   return (
     <>
       <Helmet>
@@ -32,7 +56,7 @@ const Login = () => {
                   <span className="label-text">Email</span>
                 </label>
                 <input
-                {...register("email", { required: true })}
+                  {...register("email", { required: true })}
                   type="text"
                   placeholder="email"
                   className="input input-bordered"
@@ -48,7 +72,7 @@ const Login = () => {
                   <span className="label-text">Password</span>
                 </label>
                 <input
-                {...register("password", { required: true })}
+                  {...register("password", { required: true })}
                   type="text"
                   placeholder="password"
                   className="input input-bordered"
@@ -66,6 +90,19 @@ const Login = () => {
               </div>
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Login</button>
+              </div>
+              <p>
+                <small>
+                  New Here?{" "}
+                  <Link to="/signup" className="text-blue-500">
+                    Create an account
+                  </Link>{" "}
+                </small>
+              </p>
+              <div className="divider">Or Login with</div>
+              <div className="flex text-3xl justify-center gap-5">
+                <FcGoogle onClick={handleGoogleSignIn}></FcGoogle>
+                <BsGithub></BsGithub>
               </div>
             </form>
           </div>

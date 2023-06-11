@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 const useCourses = () => {
     const [courses, setCourses] = useState([]);
   useEffect(() => {
-    fetch("../../../public/courses.json")
+    fetch("http://localhost:5000/courses")
       .then((res) => res.json())
       .then((data) => setCourses(data));
   }, []);
