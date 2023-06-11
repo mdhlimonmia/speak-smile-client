@@ -2,12 +2,12 @@ import { useContext, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../providers/AuthProvider";
-import { Navigate } from "react-router-dom";
+
 
 const SignUp = () => {
   const [data, setData] = useState([]);
   const {register,handleSubmit,formState: { errors },} = useForm();
-  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const { createUser} = useContext(AuthContext);
   const onSubmit = (data) =>{
     setData(data);
     createUser(data.email, data.password)
