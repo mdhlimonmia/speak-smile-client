@@ -16,12 +16,12 @@ const AuthProvider = ({ children }) => {
         return createUserWithEmailAndPassword(auth, email, password);
     }
     
-    // const updateUser= (name, url)=>{
-    //     setLoading(true)
-    //     return updateProfile(auth.currentUser, {
-    //         displayName: name, photoURL: url
-    //       })
-    // }
+    const updateUser= (name, url)=>{
+        setLoading(true)
+        return updateProfile(auth.currentUser, {
+            displayName: name, photoURL: url
+          })
+    }
 
     const signIn = (email, password) => {
         setLoading(true);
@@ -56,7 +56,7 @@ const AuthProvider = ({ children }) => {
         signIn, 
         googleSignIn,
         logOut,
-        // updateUser
+        updateUser
     }
 
     return (

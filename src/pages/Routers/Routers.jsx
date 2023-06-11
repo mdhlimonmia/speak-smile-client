@@ -5,6 +5,9 @@ import AllInstructors from "../AllInstructors/AllInstructors";
 import OurCourses from "../OurCourses/OurCourses";
 import Login from "../Login/Login";
 import SignUp from "../SignUp/SignUp";
+import Dashboard from "../Layout/Dashboard";
+import InstructorHome from "../Dashboard/Instructor/InstructorHome/InstructorHome";
+import AddCourse from "../Dashboard/Instructor/AddCourse/AddCourse";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +36,20 @@ const router = createBrowserRouter([
       }
     ],
   },
+  {
+    path: 'dashboard',
+    element: <Dashboard></Dashboard>,
+    children: [
+      {
+        path: 'instructor',
+        element: <InstructorHome></InstructorHome>
+      },
+      {
+        path: 'addcourse',
+        element: <AddCourse></AddCourse>
+      }
+    ]
+  }
 ]);
 
 export default router;

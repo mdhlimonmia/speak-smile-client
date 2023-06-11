@@ -15,7 +15,13 @@ const Navbar = () => {
       <li><Link to='/instructor' >All Instructor</Link></li>
       <li><Link to='/courses' >Our Course</Link></li>
       {
-        user? <> <button onClick={handelLogOut}>LogOUt</button> </> : <><li><Link to='/login' >Login</Link></li></>
+        user? <><li><Link to='/dashboard' >Dashboard</Link></li></> : <></>
+      }
+      {
+        user? <> <li><button onClick={handelLogOut}>LogOUt</button></li> </> : <><li><Link to='/login' >Login</Link></li></>
+      }
+      {
+        user? <><li><button>{user.displayName}</button></li></> : <></>
       }
     </>
   )
