@@ -1,8 +1,18 @@
+import useCourses from "../../../../component/useCourses/useCourses";
+import ManageCoursesCard from "./ManageCoursesCard";
 
 const ManageCourse = () => {
+    const [courses] = useCourses();
     return (
         <div>
-            <h1>Manage Course</h1>
+            <div>
+                {
+                    courses.map(classes => <ManageCoursesCard
+                    key={classes._id}
+                    classes={classes}
+                    ></ManageCoursesCard>)
+                }
+            </div>
         </div>
     );
 };
