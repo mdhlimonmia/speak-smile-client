@@ -8,7 +8,7 @@ const InstructorHome = () => {
   const currentInstructor = instructors.find(
     (instructor) => user?.email === instructor?.email
   );
-  console.log(currentInstructor);
+  // console.log(currentInstructor);
   return (
     <div>
       <div>

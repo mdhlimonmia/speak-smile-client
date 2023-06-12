@@ -4,13 +4,13 @@ const Dashboard = () => {
     const admin = (
         <>
         <li>
-            <Link>Admin Home</Link>
+            <Link to='admin'>Admin Home</Link>
           </li>
           <li>
-            <Link>Manage Course</Link>
+            <Link to='manageuser'>Manage Users</Link>
           </li>
           <li>
-            <Link>Manage Users</Link>
+            <Link to='managecourse'>Manage Course</Link>
           </li>
         </>
     );
