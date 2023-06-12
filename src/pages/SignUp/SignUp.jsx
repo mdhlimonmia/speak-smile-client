@@ -1,38 +1,64 @@
-import { Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
 
-
 const SignUp = () => {
   const [data, setData] = useState([]);
-  const {register,handleSubmit, reset, formState: { errors },} = useForm();
-  const { createUser, updateUser} = useContext(AuthContext);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+  const { createUser, updateUser } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const onSubmit = (data) =>{
+  const onSubmit = (data) => {
     setData(data);
-    createUser(data.email, data.password)
-    .then(() => {
-      updateUser(data.name, data.photoUrl)
-      .then(() => {
+    const newUser = {
+      name: data.name,
+      img: data.photoUrl,
+      email: data.email,
+      gender: data.gender,
+      status: "user",
+    };
+    console.log(newUser);
+    // update user (firebase)
+    createUser(data.email, data.password).then(() => {
+      updateUser(data.name, data.photoUrl).then(() => {
         console.log("user profile updated");
-        reset()
-        Swal.fire({
-          position: 'top-end',
-          icon: 'success',
-          title: 'User created successfully.',
-          showConfirmButton: false,
-          timer: 1500
-      });
-      navigate('/', );
+
+        //send user information database(mongoDB)
+        fetch("http://localhost:5000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(newUser),
+        })
+        .then(() => {
+          // console.log(data);
+          reset();
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "User created successfully.",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate("/");
+        });
       })
-  })
-    
-  }
-  
+      .catch(() => {
+        // console.log(error);
+      })
+
+    });
+  };
+
   return (
     <>
       <Helmet>
@@ -94,22 +120,22 @@ const SignUp = () => {
                 )}
               </div>
               <div className="from-control">
-              <label className="label">
-                <span className="label-text">Gender</span>
-              </label>
-              <select
-                className="input input-bordered"
-                {...register("gender", { required: true })}
-              >
-                <option value="">Select...</option>
-                <option value="A">Male</option>
-                <option value="B">Female</option>
-              </select>
-              {errors.gender && (
-                <span className="text-red-400">
-                  Please select your gender!!!
-                </span>
-              )}
+                <label className="label">
+                  <span className="label-text">Gender</span>
+                </label>
+                <select
+                  className="input input-bordered"
+                  {...register("gender", { required: true })}
+                >
+                  <option value="">Select...</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+                {errors.gender && (
+                  <span className="text-red-400">
+                    Please select your gender!!!
+                  </span>
+                )}
               </div>
               <div className="form-control">
                 <label className="label">
@@ -137,21 +163,28 @@ const SignUp = () => {
                   placeholder="confirm password"
                   className="input input-bordered"
                 />
-                {errors.confirmPassword &&  (
+                {(errors.confirmPassword && (
                   <span className="text-red-400">
                     Please retype your password!!!
                   </span>
-                ) ||
-                data?.password != data?.confirmPassword &&  (
-                  <span className="text-red-400">
-                    Confirm password no match!!!
-                  </span>
-                )}
+                )) ||
+                  (data?.password != data?.confirmPassword && (
+                    <span className="text-red-400">
+                      Confirm password no match!!!
+                    </span>
+                  ))}
               </div>
               <div className="form-control mt-6">
                 <button className="btn btn-primary">SignUp</button>
               </div>
-              <p><small>Already have a account? <Link to="/login" className="text-blue-500">Login</Link> </small></p>
+              <p>
+                <small>
+                  Already have a account?{" "}
+                  <Link to="/login" className="text-blue-500">
+                    Login
+                  </Link>{" "}
+                </small>
+              </p>
             </form>
           </div>
         </div>
