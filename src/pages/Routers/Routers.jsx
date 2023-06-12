@@ -12,6 +12,9 @@ import MyCourses from "../Dashboard/Instructor/MyCourses/MyCourses";
 import AdminHome from "../Dashboard/AdminHome/AdminHome/AdminHome";
 import ManageUser from "../Dashboard/AdminHome/ManageUser/ManageUser";
 import ManageCourse from "../Dashboard/AdminHome/ManageCourse/ManageCourse";
+import Payment from "../Dashboard/Payment/Payment";
+import PrivateRoute from "./PrivateRoute";
+import AdminRoute from "./AdminRoute";
 
 const router = createBrowserRouter([
   {
@@ -42,31 +45,35 @@ const router = createBrowserRouter([
   },
   {
     path: 'dashboard',
-    element: <Dashboard></Dashboard>,
+    element: <PrivateRoute> <Dashboard></Dashboard></PrivateRoute>,
     children: [
       {
         path: 'instructor',
-        element: <InstructorHome></InstructorHome>
+        element: <PrivateRoute><InstructorHome></InstructorHome></PrivateRoute>
       },
       {
         path: 'addcourse',
-        element: <AddCourse></AddCourse>
+        element: <PrivateRoute><AddCourse></AddCourse></PrivateRoute>
       },
       {
         path: 'mycourses',
-        element: <MyCourses></MyCourses>
+        element: <PrivateRoute><MyCourses></MyCourses></PrivateRoute>
       },
       {
         path: 'admin',
-        element: <AdminHome></AdminHome>
+        element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
       },
       {
         path: 'manageuser',
-        element: <ManageUser></ManageUser>
+        element: <AdminRoute><ManageUser></ManageUser></AdminRoute>
       },
       {
         path: 'managecourse',
-        element: <ManageCourse></ManageCourse>
+        element: <AdminRoute><ManageCourse></ManageCourse></AdminRoute>
+      },
+      {
+        path: 'payment',
+        element: <PrivateRoute><Payment></Payment></PrivateRoute>
       }
     ]
   }

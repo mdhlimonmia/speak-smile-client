@@ -1,6 +1,17 @@
+import { useContext, useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Dashboard = () => {
+  const {user} = useContext(AuthContext);
+  const [allUsers, setAllUsers] = useState([]) ;
+  useEffect(() => {
+    fetch("https://speak-smile-server.vercel.app/users")
+      .then((res) => res.json())
+      .then((data) => setAllUsers(data));
+  }, []);
+  const currentStatus = allUsers.find(k => k?.email === user?.email)?.status;
+  // console.log(currentStatus);
     const admin = (
         <>
         <li>
@@ -68,9 +79,10 @@ const Dashboard = () => {
             
         </div>
           {/* Sidebar content here */}
-          {admin}
-          {instructor}
-          {student}
+          { currentStatus === 'admin' &&  admin}
+          { currentStatus === 'instructor' &&  instructor}
+          { currentStatus === 'student' &&  student}
+          
           <hr className="m-2 "  />
           {navItem}
         </ul>

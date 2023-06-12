@@ -7,9 +7,9 @@ const AddCourse = () => {
   const { user } = useContext(AuthContext);
   const { register, handleSubmit, reset } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
+    // console.log(data);
 
-    fetch("http://localhost:5000/courses", {
+    fetch("https://speak-smile-server.vercel.app/courses", {
       method: "POST",
       headers: {
         "content-type": "application/json",

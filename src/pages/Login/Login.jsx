@@ -5,6 +5,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { BsGithub } from "react-icons/bs";
+import Swal from "sweetalert2";
 const Login = () => {
   const {
     register,
@@ -19,23 +20,49 @@ const Login = () => {
 
   const onSubmit = (data) => {
     signIn(data.email, data.password)
-      .then((result) => {
-        console.log(result);
+      .then(() => {
+        // console.log(result);
         navigate(from, { replace: true });
       })
-      .catch((error) => {
-        console.log(error.message);
+      .catch(() => {
+        // console.log(error.message);
       });
   };
 
   const handleGoogleSignIn = () => {
     googleSignIn()
       .then((result) => {
-        console.log(result);
+        // console.log(result);
+        const loggedInUser = result.user;
+        // console.log(loggedInUser);
+        const newUser = {
+          name: loggedInUser.displayName,
+          email: loggedInUser.email,
+          img: loggedInUser.photoURL,
+          status: "student",
+        };
+
+        fetch("https://speak-smile-server.vercel.app/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(newUser),
+        }).then(() => {
+          // console.log(data);
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "User created successfully.",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+          navigate("/");
+        });
         navigate(from, { replace: true });
       })
-      .catch((error) => {
-        console.log(error.message);
+      .catch(() => {
+        // console.log(error.message);
       });
   };
 

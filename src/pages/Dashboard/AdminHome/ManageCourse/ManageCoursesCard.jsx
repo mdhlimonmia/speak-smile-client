@@ -13,7 +13,7 @@ const ManageCoursesCard = ({ classes }) => {
   } = classes;
 
   const handleChangeStatus = (classes, status) => {
-    fetch(`http://localhost:5000/courses/${classes._id}`, {
+    fetch(`https://speak-smile-server.vercel.app/courses/${classes._id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

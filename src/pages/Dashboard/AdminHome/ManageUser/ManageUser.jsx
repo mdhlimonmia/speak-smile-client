@@ -5,13 +5,13 @@ const ManageUser = () => {
   const [users, setUsers] = useState([]);
  
   useEffect(() => {
-    fetch("http://localhost:5000/users")
+    fetch("https://speak-smile-server.vercel.app/users")
       .then((res) => res.json())
       .then((data) => setUsers(data));
   }, []);
 
   const handleMakeAdmin = (user, status) => {
-    fetch(`http://localhost:5000/users/${user._id}`, {
+    fetch(`https://speak-smile-server.vercel.app/users/${user._id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

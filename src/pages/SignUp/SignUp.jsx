@@ -23,16 +23,16 @@ const SignUp = () => {
       img: data.photoUrl,
       email: data.email,
       gender: data.gender,
-      status: "user",
+      status: "student",
     };
     console.log(newUser);
     // update user (firebase)
     createUser(data.email, data.password).then(() => {
       updateUser(data.name, data.photoUrl).then(() => {
-        console.log("user profile updated");
+        // console.log("user profile updated");
 
         //send user information database(mongoDB)
-        fetch("http://localhost:5000/users", {
+        fetch("https://speak-smile-server.vercel.app/users", {
           method: "POST",
           headers: {
             "content-type": "application/json",
