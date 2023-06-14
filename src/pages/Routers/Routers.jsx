@@ -14,7 +14,7 @@ import ManageUser from "../Dashboard/AdminHome/ManageUser/ManageUser";
 import ManageCourse from "../Dashboard/AdminHome/ManageCourse/ManageCourse";
 import Payment from "../Dashboard/Payment/Payment";
 import PrivateRoute from "./PrivateRoute";
-import AdminRoute from "./AdminRoute";
+// import AdminRoute from "./AdminRoute";
 
 const router = createBrowserRouter([
   {
@@ -61,22 +61,26 @@ const router = createBrowserRouter([
       },
       {
         path: 'admin',
-        element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
+        element: <PrivateRoute><AdminHome></AdminHome></PrivateRoute>
       },
       {
         path: 'manageuser',
-        element: <AdminRoute><ManageUser></ManageUser></AdminRoute>
+        element: <PrivateRoute><ManageUser></ManageUser></PrivateRoute>
       },
       {
         path: 'managecourse',
-        element: <AdminRoute><ManageCourse></ManageCourse></AdminRoute>
+        element: <PrivateRoute><ManageCourse></ManageCourse></PrivateRoute>
       },
       {
         path: 'payment',
         element: <PrivateRoute><Payment></Payment></PrivateRoute>
       }
     ]
-  }
+  },
+  // {
+  //   path: '*',
+  //   element: <Error></Error>
+  // }
 ]);
 
 export default router;

@@ -11,13 +11,14 @@ const AdminRoute = ({ children }) => {
         .then((res) => res.json())
         .then((data) => setAllUsers(data));
     }, []);
-    const currentStatus = allUsers.find(k => k?.email === user?.email)?.status;
+    const currentStatus = allUsers.find(k => k?.email === user?.email).status;
 
     const location = useLocation();
     
     if(loading){
         return loading(true);
     }
+    console.log(allUsers);
     if (user && currentStatus === 'admin') {
         return children;
     }
