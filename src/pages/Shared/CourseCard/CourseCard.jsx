@@ -2,7 +2,7 @@ import { IoPeopleOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 
 const CourseCard = ({ classes }) => {
-  const { course, img, price, instructorName, seat, studentsEnrolled } =
+  const {_id, course, img, price, instructorName, seat, studentsEnrolled } =
     classes;
   return (
     <div className="card card-compact  bg-base-100 shadow-xl">
@@ -19,7 +19,7 @@ const CourseCard = ({ classes }) => {
         <hr />
         <div className="card-actions justify-between items-center">
           <p className="text-2xl text-blue-500">${price}</p>
-          { seat != 0 && <Link to='/dashboard/payment'><button className="btn text-white bg-blue-500">Enroll Now</button></Link>}
+          { seat != 0 && <Link to={`/dashboard/payment/${_id}`}><button className="btn text-white bg-blue-500">Enroll Now</button></Link>}
         </div>
       </div>
     </div>

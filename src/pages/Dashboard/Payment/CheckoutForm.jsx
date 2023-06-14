@@ -1,11 +1,26 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../../providers/AuthProvider";
 
 
-const CheckoutForm = () => {
+const CheckoutForm = ({money}) => {
+    const {user} = useContext(AuthContext);
     const stripe = useStripe();
     const elements = useElements();
     const [cardError, setCardError] = useState('')
+    const [clientSecret, setClientSecret] = useState("");
+    const [processing, setProcessing] = useState(false)
+    
+    useEffect(() => {
+        // Create PaymentIntent as soon as the page loads
+        fetch("http://localhost:5000/create-payment-intent", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({price:money}),
+        })
+          .then((res) => res.json())
+          .then((data) => setClientSecret(data.clientSecret));
+      }, [money]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -30,6 +45,31 @@ const CheckoutForm = () => {
             setCardError('')
             console.log('paymentMethod', paymentMethod);
         }
+
+        setProcessing(true);
+
+        const {paymentIntent, error: confirmError} = await stripe.confirmCardPayment(
+            clientSecret,
+            {
+              payment_method: {
+                card: card,
+                billing_details: {
+                  email: user?.email || 'Unknown',
+                  name: user?.displayName || 'anonymous'
+                },
+              },
+            },
+          );
+          if(confirmError){
+            console.log(confirmError);
+          }
+          console.log(paymentIntent);
+          
+          setProcessing(false)
+          if(paymentIntent.status === "succeeded"){
+            const transactionId = paymentIntent.id;
+          }
+
     }
     return (
         <>
@@ -50,7 +90,9 @@ const CheckoutForm = () => {
                         },
                     }}
                 />
-                <button className="btn btn-primary bg-blue-500 btn-sm mt-4" type="submit" >
+                <button className="btn btn-primary bg-blue-500 btn-sm mt-4" type="submit" 
+                disabled={!stripe || !clientSecret || processing}
+                >
                     Pay
                 </button>
             </form>
