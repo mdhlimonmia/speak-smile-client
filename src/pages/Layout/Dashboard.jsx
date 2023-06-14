@@ -44,13 +44,10 @@ const Dashboard = () => {
             <Link>Student Home</Link>
           </li>
           <li>
-            <Link>My Selected Course</Link>
+            <Link to='selected'>My Selected Course</Link>
           </li>
           <li>
-            <Link>My Course</Link>
-          </li>
-          <li>
-            <Link>My Enrolled Course</Link>
+            <Link to='myallcourses'>My All Course</Link>
           </li>
         </>
     );

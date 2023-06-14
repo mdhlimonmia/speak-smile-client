@@ -14,6 +14,8 @@ import ManageUser from "../Dashboard/AdminHome/ManageUser/ManageUser";
 import ManageCourse from "../Dashboard/AdminHome/ManageCourse/ManageCourse";
 import Payment from "../Dashboard/Payment/Payment";
 import PrivateRoute from "./PrivateRoute";
+import SelectedCourses from "../Dashboard/Student/SelectedCourses/SelectedCourses";
+import MyAllCourses from "../Dashboard/Student/MyAllCourses/MyAllCourses";
 // import AdminRoute from "./AdminRoute";
 
 const router = createBrowserRouter([
@@ -75,6 +77,14 @@ const router = createBrowserRouter([
         path: 'payment/:id',
         element: <PrivateRoute><Payment></Payment></PrivateRoute>,
         loader: ({params})=>fetch(`http://localhost:5000/course/${params.id}`)
+      },
+      {
+        path: 'selected',
+        element:<PrivateRoute><SelectedCourses></SelectedCourses></PrivateRoute>
+      },
+      {
+        path: 'myallcourses',
+        element: <PrivateRoute><MyAllCourses></MyAllCourses></PrivateRoute>
       }
     ]
   },
