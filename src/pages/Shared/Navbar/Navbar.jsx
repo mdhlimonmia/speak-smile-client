@@ -10,7 +10,7 @@ const Navbar = () => {
    
   }
   const navItems = (
-    <>
+    <div className="flex text-white">
       <li><Link to='/' >Home</Link></li>
       <li><Link to='/instructor' >All Instructor</Link></li>
       <li><Link to='/courses' >Our Course</Link></li>
@@ -18,12 +18,12 @@ const Navbar = () => {
         user? <><li><Link to='/dashboard' >Dashboard</Link></li></> : <></>
       }
       {
-        user? <> <li><button onClick={handelLogOut}>LogOUt</button></li> </> : <><li><Link to='/login' >Login</Link></li></>
+        user? <> <li><button onClick={handelLogOut}>Logout</button></li> </> : <><li><Link to='/login' >Login</Link></li></>
       }
       {
         user? <><li><button>{user.displayName}</button></li></> : <></>
       }
-    </>
+    </div>
   )
   return (
     <div className="navbar bg-base-100">
@@ -52,7 +52,7 @@ const Navbar = () => {
            {navItems}
           </ul>
         </div>
-        <a className="btn btn-ghost normal-case text-xl text-blue-500 font-bold font-serif">SpSmile</a>
+        <a className="btn btn-ghost normal-case text-xl text-blue-400 font-bold font-serif">SpSmile</a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">

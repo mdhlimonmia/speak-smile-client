@@ -8,7 +8,7 @@ const SelectedCourses = () => {
     const [courses] = useCourses()
     const { user } = useContext(AuthContext);
     useEffect(()=>{
-        fetch("http://localhost:5000/selected")
+        fetch("https://speak-smile-server.vercel.app/selected")
         .then(res => res.json())
         .then(data => {
             setCourse(data.filter(k => k.email === user?.email));

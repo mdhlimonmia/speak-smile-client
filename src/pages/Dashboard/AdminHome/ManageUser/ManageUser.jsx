@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
 const ManageUser = () => {
+  const [disabled,setDisabled] = useState(false);
   const [users, setUsers] = useState([]);
  
   useEffect(() => {
@@ -21,7 +22,7 @@ const ManageUser = () => {
       .then((res) => res.json())
       .then((data) => {
         if (data.modifiedCount) {
-
+          setDisabled(true);
           Swal.fire({
             position: "top-end",
             icon: "success",
@@ -80,6 +81,7 @@ const ManageUser = () => {
                       Make Admin
                     </button>
                     <button
+                      disabled={disabled}
                       onClick={() =>
                         handleMakeAdmin(user, { status: "instructor" })
                       }

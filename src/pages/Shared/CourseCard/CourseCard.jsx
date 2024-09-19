@@ -17,7 +17,7 @@ const CourseCard = ({ classes }) => {
 //     if(user){
 //       const selectedCourse = {id:_id, course, email: user?.email, price};
 //       console.log(selectedCourse);
-//       fetch('http://localhost:5000/selected', {
+//       fetch('https://speak-smile-server.vercel.app/selected', {
 //         method: "POST",
 //         headers: { "Content-Type": "application/json" },
 //         body: JSON.stringify(selectedCourse),
@@ -36,8 +36,8 @@ const CourseCard = ({ classes }) => {
 
   return (
     <div className="card card-compact  bg-base-100 shadow-xl">
-      <figure>
-        <img src={img} alt="Shoes" />
+      <figure className="h-48">
+        <img src={img} alt="Shoes"/>
       </figure>
       <div className="card-body text-white">
         <h2 className="card-title text-blue-500">Learn {course}</h2>

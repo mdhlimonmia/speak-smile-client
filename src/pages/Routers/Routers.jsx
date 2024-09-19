@@ -16,6 +16,7 @@ import Payment from "../Dashboard/Payment/Payment";
 import PrivateRoute from "./PrivateRoute";
 import SelectedCourses from "../Dashboard/Student/SelectedCourses/SelectedCourses";
 import MyAllCourses from "../Dashboard/Student/MyAllCourses/MyAllCourses";
+import Page4o4 from "../Page404/Page404";
 // import AdminRoute from "./AdminRoute";
 
 const router = createBrowserRouter([
@@ -76,7 +77,7 @@ const router = createBrowserRouter([
       {
         path: 'payment/:id',
         element: <PrivateRoute><Payment></Payment></PrivateRoute>,
-        loader: ({params})=>fetch(`http://localhost:5000/course/${params.id}`)
+        loader: ({params})=>fetch(`https://speak-smile-server.vercel.app/course/${params.id}`)
       },
       {
         path: 'selected',
@@ -88,10 +89,10 @@ const router = createBrowserRouter([
       }
     ]
   },
-  // {
-  //   path: '*',
-  //   element: <Error></Error>
-  // }
+  {
+    path: '*',
+    element: <Page4o4></Page4o4>
+  }
 ]);
 
 export default router;

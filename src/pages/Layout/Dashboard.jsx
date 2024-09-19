@@ -72,7 +72,7 @@ const Dashboard = () => {
       </div>
       <div className="drawer-side  text-white font-bold  bg-gray-700">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-        <ul className="menu p-4 w-80 h-full">
+        <ul className="menu p-4 w-70 h-full">
         <div className="text-blue-500 pt-4 p-4 text-2xl">
             <p className="text-2xl uppercase">Speak Smile</p>
             

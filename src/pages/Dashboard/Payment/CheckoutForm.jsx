@@ -14,7 +14,7 @@ const CheckoutForm = ({ course, money }) => {
 
   useEffect(() => {
     // Create PaymentIntent as soon as the page loads
-    fetch("http://localhost:5000/create-payment-intent", {
+    fetch("https://speak-smile-server.vercel.app/create-payment-intent", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ price: money }),
@@ -35,7 +35,7 @@ const CheckoutForm = ({ course, money }) => {
       return;
     }
     // console.log('card', card);
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
+    const { error } = await stripe.createPaymentMethod({
       type: "card",
       card,
     });
@@ -43,7 +43,7 @@ const CheckoutForm = ({ course, money }) => {
       setCardError(error.message);
     } else {
       setCardError("");
-      console.log("paymentMethod", paymentMethod);
+      // console.log("paymentMethod", paymentMethod);
     }
 
     setProcessing(true);
@@ -61,7 +61,7 @@ const CheckoutForm = ({ course, money }) => {
     if (confirmError) {
       console.log(confirmError);
     }
-    console.log(paymentIntent);
+    // console.log(paymentIntent);
 
     setProcessing(false);
     if (paymentIntent.status === "succeeded") {
@@ -75,8 +75,8 @@ const CheckoutForm = ({ course, money }) => {
         course: course.course,
         courseId: course._id,
       };
-      console.log(payment);
-      fetch("http://localhost:5000/payments", {
+      // console.log(payment);
+      fetch("https://speak-smile-server.vercel.app/payments", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -96,6 +96,7 @@ const CheckoutForm = ({ course, money }) => {
             });
           }
         });
+      //update seat and student number
       const seat = { seat: parseInt(course.seat) - 1 };
       fetch(`https://speak-smile-server.vercel.app/courses/${course._id}`, {
         method: "PATCH",
@@ -106,6 +107,29 @@ const CheckoutForm = ({ course, money }) => {
       })
         .then()
         .catch();
+
+      const studentsEnrolled = {
+        studentsEnrolled: parseInt(course.studentsEnrolled) + 1,
+      };
+      // console.log(studentsEnrolled);
+      fetch(`https://speak-smile-server.vercel.app/courses/${course._id}`, {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(studentsEnrolled),
+      })
+        .then()
+        .catch();
+        
+      // // update user student number
+      // fetch(`https://speak-smile-server.vercel.app/users/${user._id}`, {
+      //   method: "PATCH",
+      //   headers: {
+      //     "content-type": "application/json",
+      //   },
+      //   body: JSON.stringify(status),
+      // });
     }
   };
 

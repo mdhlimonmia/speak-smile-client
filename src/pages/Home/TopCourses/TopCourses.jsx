@@ -8,7 +8,7 @@ const TopCourses = () => {
         <h1 className="text-center text-5xl font-bold text-blue-500 p-10">Our Popular Courses</h1>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
         {courses
-          .sort((a, b) => a.studentsEnrolled - b.studentsEnrolled).slice(0,6)
+          .sort((a, b) => b.studentsEnrolled - a.studentsEnrolled).slice(0,6)
           .map((classes) => (
             <CourseCard key={classes._id} classes={classes}></CourseCard>
           ))}
